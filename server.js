@@ -24,3 +24,5 @@ server.get('/', (req, res)=>{
 server.listen(3000, function (){
     console.log('Servidor rodando http://localhost:3000')
 });
+
+const PORT = process.env.PORT || 3000;
