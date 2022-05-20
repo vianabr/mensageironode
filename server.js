@@ -1,28 +1,29 @@
 //configurações padrão de bibliotecas
 const express = require('express');
 
-const server = express();
+const app = express();
 
-server.set('view engine', 'ejs')
+app.set('view engine', 'ejs')
 
-server.set('views', './views')
+app.set('views', './views')
 
-server.use(express.static('./public'))
+app.use(express.static('./public'))
 
-server.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 
 //recuperando as arrays do arquivo mockup com "require", e disponibilizando na pasta principal de trabalho (home)
 
 const frases = require('./mockup');
 
-server.get('/', (req, res)=>{
+app.get('/', (req, res)=>{
     res.render('home', {frases})
 })
 
 //servidor rodando
 
-server.listen(3000, function (){
-    console.log('Servidor rodando http://localhost:3000')
-});
 
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
+
